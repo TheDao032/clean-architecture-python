@@ -1,0 +1,21 @@
+stages:
+  - stage: setup_version
+    dependsOn: build_push_image
+    condition: in(dependencies.build_push_image.result, 'Succeeded', 'Skipped')
+    jobs:
+      - job: setup_version_labels
+        displayName: Setup version labels
+        steps:
+          - script: |
+              VERSION_LABELS="$(echo $(Build.SourceVersion) | cut -c1-7)"
+              echo "##vso[task.setvariable variable=versionLabels;isOutput=true]${VERSION_LABELS}"
+            displayName: Setup Version Labels
+            name: versionLabels
+
+      - template: azure-pipeline.yml@helmchart
+        parameters:
+          ENVIRONMENT: $(environment)
+          VERSION_LABELS: $(versionLabels)
+          APP_NAME: $(appName)
+          RESOURCE_GROUP: "$(resourceGroup)-$(environment)"
+          AKS_CLUSTER: "$(aksCluster)-$(environment)"

@@ -1,0 +1,35 @@
+trigger:
+  branches:
+    include:
+      - dev
+      - staging
+      - prod
+
+resources:
+  repositories:
+    - repository: helmchart
+      type: git
+      name: helm/helm
+      ref: main # optional ref to pin to
+
+variables:
+  - group: ntuc-ntd-common
+  - name: appName
+    value: dumpuser-service
+  - name: environment
+    ${{ if eq( variables['Build.SourceBranchName'], 'dev' ) }}:
+      value: dev
+    ${{ if eq( variables['Build.SourceBranchName'], 'staging' ) }}:
+      value: staging
+    ${{ if eq( variables['Build.SourceBranchName'], 'prod' ) }}:
+      value: prod
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  # - template: /workflows/check.yml
+  # - template: /workflows/analysis.yml
+  - template: /workflows/build.yml
+  - template: /workflows/deploy.yml
+
