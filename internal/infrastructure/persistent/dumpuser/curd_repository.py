@@ -1,13 +1,13 @@
 from internal.domain.entities.dumpuser import DumpUser
 from internal.domain.interfaces.dumpuser.command_repository import DumpUserCommandRepository
 from sqlalchemy.orm import Session
-from datetime import datetime
+from datetime import datetime,timezone
 
 class DumpUserCommandRepository(DumpUserCommandRepository):
     def create_user(self, db: Session, *, obj_in: DumpUser) -> DumpUser:
         try:
             # Add a time column to the DumpUser object
-            obj_in.time_index = datetime.now()
+            obj_in.time_index = datetime.now(timezone.utc)
 
             db.add(obj_in)
             db.commit()
