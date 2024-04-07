@@ -14,4 +14,4 @@ class Base:
     # Generate __tablename__ automatically
     @declared_attr
     def __tablename__(cls) -> str:  # noqa: N805
-        return cls.__name__.lower()+ '_ts'
+        return cls.__name__.lower()
