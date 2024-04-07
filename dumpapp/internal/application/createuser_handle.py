@@ -27,10 +27,12 @@ def insert_user(db: Session,USERS) -> None:
         user = cmd_repo.create_user(db=db, obj_in=user_in)
 
 
-def insert_loop(USERS):
+def insert_loop(USERS,stop_condition):
     db = SessionLocal()
-    while True:
+    idx_records=0
+    while idx_records<=stop_condition:
         insert_user(db,USERS)
+        idx_records+=1
         time.sleep(1)
     db.close()
 
