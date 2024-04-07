@@ -8,17 +8,7 @@ from datetime import datetime,timezone
 import time
 
 
-
-USERS = [
-    {
-        "userId": "1",
-        "phone": "+84904444777",
-        "name": "demo1"
-    }
-]
-
-
-def insert_user(db: Session) -> None:
+def insert_user(db: Session,USERS) -> None:
     query_repo = query_repository.DumpUserQueryRepository()
     cmd_repo = command_repository.DumpUserCommandRepository()
     for user in USERS:
@@ -37,10 +27,10 @@ def insert_user(db: Session) -> None:
         user = cmd_repo.create_user(db=db, obj_in=user_in)
 
 
-def insert_loop():
+def insert_loop(USERS):
     db = SessionLocal()
     while True:
-        insert_user(db)
+        insert_user(db,USERS)
         time.sleep(1)
-    
     db.close()
+
