@@ -1,4 +1,0 @@
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-*/2 * * * * bash /scheduler.sh > /var/log/activate_scheduler.log 2>&1
