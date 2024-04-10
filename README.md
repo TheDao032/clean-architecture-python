@@ -183,3 +183,4 @@ Is the process of analyzing a web application through the front-end to find vuln
 # Ex4
 # Ex5
 # Ex6
+# Ex7
