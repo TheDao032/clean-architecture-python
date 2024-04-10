@@ -178,3 +178,4 @@ Is an automated process that identifies the open source software in a codebase. 
 Is the process of analyzing a web application through the front-end to find vulnerabilities through simulated attacks. This type of approach evaluates the application from the “outside in” by attacking an application like a malicious user would
 
 # Ex1
+# Ex2
