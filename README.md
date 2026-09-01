@@ -176,3 +176,5 @@ Is a testing methodology that analyzes source code to find security vulnerabilit
 Is an automated process that identifies the open source software in a codebase. This analysis is performed to evaluate security, license compliance, and code quality
 ## DAST Dynamic Application Security Testing
 Is the process of analyzing a web application through the front-end to find vulnerabilities through simulated attacks. This type of approach evaluates the application from the “outside in” by attacking an application like a malicious user would
+
+# Ex1
